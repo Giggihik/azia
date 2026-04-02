@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню — Azia</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo"><a href="{% url 'home' %}">Azia</a></div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="{% url 'home' %}">Главная</a></li>
+                    <li><a href="{% url 'menu' %}">Меню</a></li>
+                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 style="margin: 2rem 0 1rem;">Наше меню</h1>
+        <div class="dishes-grid">
+            {% for dish in dishes %}
+            <div class="dish-card">
+                <div class="dish-image">
+                    <img src="{% static 'images/' %}{{ dish.id }}.jpg" alt="{{ dish.name }}"
+                         onerror="this.onerror=null; this.src='{% static 'images/placeholder.jpg' %}'">
+                </div>
+                <div class="dish-info">
+                    <h3 class="dish-title">{{ dish.name }}</h3>
+                    <p>{{ dish.description|truncatewords:12 }}</p>
+                    <div class="dish-price">{{ dish.price }} ₽</div>
+                    <a href="{% url 'dish_detail' dish.id %}" class="btn" style="margin-top: 0.6rem;">Подробнее</a>
+                </div>
+            </div>
+            {% empty %}
+            <p>Блюда скоро появятся.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Ресторан Azia. Восточная кухня.</p>
+        </div>
+    </footer>
+</body>
+</html>

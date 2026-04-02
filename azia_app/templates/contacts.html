@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты — Azia</title>
+    <link rel="stylesheet" href="../static/style/1.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo"><a href="index.html">Azia</a></div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="menu.html">Меню</a></li>
+                    <li><a href="contacts.html" class="active">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 style="text-align: center; margin: 2rem 0;">Контакты</h1>
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; margin-bottom: 2rem;">
+            <div style="flex: 1; min-width: 250px;">
+                <h3>Ресторан Azia</h3>
+                <p>📍 ул. Восточная, 15, Москва</p>
+                <p>📞 +7 (999) 123-45-67</p>
+                <p>✉️ info@azia.ru</p>
+                <p>🕒 Ежедневно: 12:00 – 23:00</p>
+            </div>
+            <div style="flex: 1.5;">
+                <h3>Свяжитесь с нами</h3>
+                <form id="contactForm" class="contact-form" style="margin: 0;">
+                    <div class="form-group">
+                        <label>Ваше имя</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Телефон или email</label>
+                        <input type="text" id="contact" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Сообщение</label>
+                        <textarea id="message" rows="3" required></textarea>
+                    </div>
+                    <button type="submit">Отправить</button>
+                    <div id="formResult" class="result-message"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Ресторан Azia. Восточная кухня.</p>
+        </div>
+    </footer>
+
+    <script src="../static/js/telegram.js"></script>
+</body>
+</html>
