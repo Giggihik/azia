@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}О нас – АзияАппетит{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <h1>Немного о нас</h1>
+        <p>Традиции, вкус и гостеприимство с 2015 года. Благодаря вашему доверию и преданности, работаем по сей день</p>
+    </div>
+</section>
+
+<section class="about-content container">
+    <div class="about__story">
+        <h2>С чего все начиналось</h2>
+        <p>Ресторан «Азия Аппетит» открыл свои двери в 2015 году с миссией познакомить гостей с аутентичной кухней Китая, Японии, Таиланда и Вьетнама. Наши шеф-повара — мастера, прошедшие обучение в странах Юго-Восточной Азии. Каждое блюдо готовится по оригинальным рецептам с использованием только свежих ингредиентов и азиатских специй.</p>
+        <p>Мы гордимся тем, что создали уютное пространство, где можно провести семейный ужин, деловую встречу или романтический вечер. За годы работы мы получили звание «Лучший азиатский ресторан города» по версии журнала «Гастрономъ» и продолжаем радовать вас новыми вкусами.</p>
+    </div>
+
+    <div class="about__features">
+        <div class="about__feature">
+            <span class="about__icon"></span>
+            <h3>Опытные шеф-повара</h3>
+            <p>Наши мастера учились у лучших кулинаров Азии, чтобы подарить вам настоящий вкус традиций.</p>
+        </div>
+        <div class="about__feature">
+            <span class="about__icon"></span>
+            <h3>Свежие продукты</h3>
+            <p>Ежедневные поставки овощей, морепродуктов и специй от проверенных фермеров.</p>
+        </div>
+        <div class="about__feature">
+            <span class="about__icon"></span>
+            <h3>Атмосфера Азии</h3>
+            <p>Интерьер, музыка и сервис, которые перенесут вас в сердце восточной культуры.</p>
+        </div>
+    </div>
+
+    <div class="about__team">
+        <h2>Наша команда</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-member__photo" style="background-image: url('{% static 'images/ккк.jpg' %}');"></div>
+                <h4>Ли Вэй</h4>
+                <p>Шеф-повар (Китайская кухня)</p>
+            </div>
+            <div class="team-member">
+                <div class="team-member__photo" style="background-image: url('{% static 'images/ц.jpg' %}');"></div>
+                <h4>Юки Танака</h4>
+                <p>Су-шеф (Японская кухня)</p>
+            </div>
+            <div class="team-member">
+                <div class="team-member__photo" style="background-image: url('{% static 'images/ее.jpg' %}');"></div>
+                <h4>Анита Суваннарат</h4>
+                <p>Мастер тайской кухни</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

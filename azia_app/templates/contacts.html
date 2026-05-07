@@ -1,63 +1,71 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Контакты — Azia</title>
-    <link rel="stylesheet" href="../static/style/1.css">
-</head>
-<body>
-    <header class="header">
-        <div class="container">
-            <div class="logo"><a href="index.html">Azia</a></div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="menu.html">Меню</a></li>
-                    <li><a href="contacts.html" class="active">Контакты</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+{% extends 'base.html' %}
+{% load static %}
 
+{% block title %}Контакты – АзияАппетит{% endblock %}
+
+{% block content %}
+<section class="page-hero">
     <div class="container">
-        <h1 style="text-align: center; margin: 2rem 0;">Контакты</h1>
-        <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; margin-bottom: 2rem;">
-            <div style="flex: 1; min-width: 250px;">
-                <h3>Ресторан Azia</h3>
-                <p>📍 ул. Восточная, 15, Москва</p>
-                <p>📞 +7 (999) 123-45-67</p>
-                <p>✉️ info@azia.ru</p>
-                <p>🕒 Ежедневно: 12:00 – 23:00</p>
-            </div>
-            <div style="flex: 1.5;">
-                <h3>Свяжитесь с нами</h3>
-                <form id="contactForm" class="contact-form" style="margin: 0;">
-                    <div class="form-group">
-                        <label>Ваше имя</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Телефон или email</label>
-                        <input type="text" id="contact" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Сообщение</label>
-                        <textarea id="message" rows="3" required></textarea>
-                    </div>
-                    <button type="submit">Отправить</button>
-                    <div id="formResult" class="result-message"></div>
-                </form>
-            </div>
+        <h1>Контакты</h1>
+        <p>Мы ждём вас в гости и всегда на связи</p>
+    </div>
+</section>
+
+<section class="contacts-content container">
+    <div class="contacts__info">
+        <div class="contact-card">
+            <span class="contact-card__icon">📍</span>
+            <h3>Адрес</h3>
+            <p>г. Сургут, ул. Ленина, д. 45</p>
+            <p>🗺️ <a href="https://yandex.ru/maps/org/aziya_apetit" target="_blank">Открыть в Яндекс Картах</a></p>
+        </div>
+        <div class="contact-card">
+            <span class="contact-card__icon">🕒</span>
+            <h3>Режим работы</h3>
+            <p>Пн–Чт: 12:00 – 23:00</p>
+            <p>Пт–Сб: 12:00 – 01:00</p>
+            <p>Вс: 13:00 – 22:00</p>
+        </div>
+        <div class="contact-card">
+            <span class="contact-card__icon">📞</span>
+            <h3>Телефон</h3>
+            <p><a href="tel:+79001234567">+7 (900) 123-45-67</a></p>
+            <p>Бронирование столиков, доставка</p>
+        </div>
+        <div class="contact-card">
+            <span class="contact-card__icon">✉️</span>
+            <h3>Email</h3>
+            <p><a href="mailto:info@aziaappetit.ru">info@aziaappetit.ru</a></p>
+            <p>По вопросам сотрудничества и мероприятий</p>
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Ресторан Azia. Восточная кухня.</p>
-        </div>
-    </footer>
+    <div class="contacts__form">
+        <h2>Напишите нам</h2>
+        <form id="contactForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Ваше имя" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <textarea id="message" rows="5" placeholder="Сообщение" required></textarea>
+            </div>
+            <button type="submit" class="btn btn--red">Отправить</button>
+        </form>
+        <p id="formFeedback" class="form-feedback"></p>
+    </div>
+</section>
+{% endblock %}
 
-    <script src="../static/js/telegram.js"></script>
-</body>
-</html>
+{% block extra_js %}
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('formFeedback').textContent = 'Спасибо! Мы свяжемся с вами в ближайшее время.';
+    this.reset();
+});
+</script>
+{% endblock %}

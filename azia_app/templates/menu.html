@@ -1,52 +1,63 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Меню — Azia</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <header class="header">
-        <div class="container">
-            <div class="logo"><a href="{% url 'home' %}">Azia</a></div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="{% url 'home' %}">Главная</a></li>
-                    <li><a href="{% url 'menu' %}">Меню</a></li>
-                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
+{% block title %}Меню – Azia coded{% endblock %}
+
+{% block content %}
+<div id="notification" class="notification"></div>
+<section class="page-hero">
     <div class="container">
-        <h1 style="margin: 2rem 0 1rem;">Наше меню</h1>
-        <div class="dishes-grid">
-            {% for dish in dishes %}
-            <div class="dish-card">
-                <div class="dish-image">
-                    <img src="{% static 'images/' %}{{ dish.id }}.jpg" alt="{{ dish.name }}"
-                         onerror="this.onerror=null; this.src='{% static 'images/placeholder.jpg' %}'">
-                </div>
-                <div class="dish-info">
-                    <h3 class="dish-title">{{ dish.name }}</h3>
-                    <p>{{ dish.description|truncatewords:12 }}</p>
-                    <div class="dish-price">{{ dish.price }} ₽</div>
-                    <a href="{% url 'dish_detail' dish.id %}" class="btn" style="margin-top: 0.6rem;">Подробнее</a>
-                </div>
-            </div>
-            {% empty %}
-            <p>Блюда скоро появятся.</p>
-            {% endfor %}
-        </div>
+        <h1>Меню</h1>
+        <p>Аутентичные блюда азиатской кухни от шеф-повара. Попробуйте Азию на вкус!</p>
     </div>
+</section>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Ресторан Azia. Восточная кухня.</p>
+
+<div class="cart-icon" id="cartIcon">
+    <span class="cart-icon__badge" id="cartBadge">0</span>
+    🛒
+</div>
+
+
+<div class="cart-panel" id="cartPanel">
+    <div class="cart-panel__header">
+    <h2>Ваш заказ</h2>
+    <div class="cart-panel__header-actions">
+        <button class="cart-panel__clear" id="clearCart">Очистить</button>
+        <button class="cart-panel__close" id="closeCart">&times;</button>
+    </div>
+</div>
+    <div class="cart-panel__items" id="cartItems">
+        <p class="cart-panel__empty">Корзина пуста</p>
+    </div>
+    <div class="cart-panel__footer">
+        <div class="cart-panel__total">
+            Итого: <span id="cartTotal">0</span> ₽
         </div>
-    </footer>
-</body>
-</html>
+        <button class="btn btn--red cart-panel__checkout">Оформить заказ</button>
+    </div>
+</div>
+
+
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<section class="menu-page container">
+    <div class="menu-filters">
+        <button class="filter-btn active" data-category="all">Все</button>
+        <button class="filter-btn" data-category="супы">Супы</button>
+        <button class="filter-btn" data-category="закуски">Закуски</button>
+        <button class="filter-btn" data-category="горячее">Горячее</button>
+        <button class="filter-btn" data-category="роллы">Роллы</button>
+        <button class="filter-btn" data-category="напитки">Напитки</button>
+        <button class="filter-btn" data-category="десерты">Десерты</button>
+    </div>
+    <div class="menu-grid" id="menuGrid">
+        <!-- Карточки генерируются JS -->
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'script/menu-data.js' %}"></script>
+<script src="{% static 'script/menu.js' %}"></script>
+{% endblock %}

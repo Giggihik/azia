@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Azia coded{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <div class="container header__inner">
+            <a href="/" class="logo">
+                <span class="logo__text">Azia</span>coded
+            </a>
+            <nav class="nav">
+                <a href="{% url 'index' %}" class="nav__link active">Главная</a>
+                <a href="{% url 'menu' %}" class="nav__link">Меню</a>
+                <a href="{% url 'about' %}" class="nav__link">О нас</a>
+                <a href="{% url 'contacts' %}" class="nav__link">Контакты</a>
+            </nav>
+    </header>
+
+    <main class="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <p class="footer__copy">© 2026 Azia coded. Все права защищены.</p>
+            <div class="footer__links">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Условия использования</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>var STATIC_URL = "{% static '' %}";</script>
+    <script src="{% static 'script/script.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

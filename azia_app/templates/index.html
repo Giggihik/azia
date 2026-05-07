@@ -1,97 +1,78 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azia — Ресторан восточной кухни</title>
-    <link rel="stylesheet" href="../static/style/1.css">
-</head>
-<body>
-    <header class="header">
-        <div class="container">
-            <div class="logo"><a href="#">Azia</a></div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="#home">Главная</a></li>
-                    <li><a href="#popular">Популярное</a></li>
-                    <li><a href="#menu">Меню</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
-                </ul>
-            </nav>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Azia coded – Ресторан азиатской кухни{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero__slider" id="heroSlider">
+        <div class="hero__slide active" style="background-image: url('{% static 'images/1.jpg' %}');">
+            <div class="hero__overlay">
+                <h1>Вкус Азии у вас на столе</h1>
+                <p>Авторские блюда от шеф-поваров из Китая, Японии и Таиланда</p>
+                <a href="{% url 'menu' %}" class="btn btn--white">Смотреть меню</a>
+            </div>
         </div>
-    </header>
-
-    <main>
-        <!-- Hero-секция -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Azia</h1>
-                <p>Аутентичная восточная кухня в сердце города</p>
-                <a href="#menu" class="btn">Смотреть меню</a>
+        <div class="hero__slide" style="background-image: url('{% static 'images/5.jpg' %}');">
+            <div class="hero__overlay">
+                <h1>Свежие ингредиенты каждый день</h1>
+                <p>Только лучшие продукты для настоящего вкуса</p>
+                <a href="{% url 'menu' %}" class="btn btn--white">Смотреть меню</a>
             </div>
-        </section>
-
-        <!-- Популярные блюда -->
-        <section id="popular" class="section">
-            <div class="container">
-                <h2 class="section-title">Популярные блюда</h2>
-                <div class="dishes-grid" id="popular-grid">
-                    <!-- Карточки будут заполнены через JS или можно вручную -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Полное меню -->
-        <section id="menu" class="section bg-light">
-            <div class="container">
-                <h2 class="section-title">Наше меню</h2>
-                <div class="dishes-grid" id="full-menu-grid"></div>
-            </div>
-        </section>
-
-        <!-- Контакты и форма обратной связи -->
-        <section id="contacts" class="section">
-            <div class="container">
-                <h2 class="section-title">Контакты</h2>
-                <div class="contacts-wrapper">
-                    <div class="contacts-info">
-                        <h3>Ресторан Azia</h3>
-                        <p>📍 ул. Восточная, 15, Москва</p>
-                        <p>📞 +7 (999) 123-45-67</p>
-                        <p>✉️ info@azia.ru</p>
-                        <p>🕒 Ежедневно: 12:00 – 23:00</p>
-                    </div>
-                    <div class="contact-form">
-                        <h3>Свяжитесь с нами</h3>
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <label>Ваше имя</label>
-                                <input type="text" id="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Телефон или email</label>
-                                <input type="text" id="contact" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Сообщение</label>
-                                <textarea id="message" rows="3" required></textarea>
-                            </div>
-                            <button type="submit" class="btn">Отправить</button>
-                            <div id="formResult" class="result-message"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Ресторан Azia. Восточная кухня.</p>
         </div>
-    </footer>
+        <div class="hero__slide" style="background-image: url('{% static 'images/3.jpg' %}');">
+            <div class="hero__overlay">
+                <h1>Традиции и современность</h1>
+                <p>Классические рецепты в новом прочтении</p>
+                <a href="{% url 'menu' %}" class="btn btn--white">Смотреть меню</a>
+            </div>
+        </div>
+        <div class="hero__slide" style="background-image: url('{% static 'images/4.jpg' %}');">
+            <div class="hero__overlay">
+                <h1>Уютная атмосфера</h1>
+                <p>Идеальное место для встреч с друзьями и семьёй</p>
+                <a href="{% url 'menu' %}" class="btn btn--white">Смотреть меню</a>
+            </div>
+        </div>
+        <div class="hero__slide" style="background-image: url('{% static 'images/2.jpg' %}');">
+            <div class="hero__overlay">
+                <h1>Доставка по городу</h1>
+                <p>Любимые блюда прямо к вашему порогу</p>
+                <a href="{% url 'menu' %}" class="btn btn--white">Смотреть меню</a>
+            </div>
+        </div>
+    </div>
+    <button class="hero__arrow hero__arrow--left" id="prevSlide">&#10094;</button>
+    <button class="hero__arrow hero__arrow--right" id="nextSlide">&#10095;</button>
+    <div class="hero__dots" id="heroDots"></div>
+</section>
 
-    <script src="static/js/telegram.js"></script>
-    <script src="static/js/menu-data.js"></script>
-</body>
-</html>
+<section class="features container">
+    <h2 class="section-title">Почему выбирают нас</h2>
+    <div class="features__grid">
+        <div class="feature-card">
+            <div class="feature-card__icon"></div>
+            <h3>Аутентичные рецепты</h3>
+            <p>Шеф-повара из стран Азии готовят по оригинальным рецептам</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-card__icon"></div>
+            <h3>Свежие продукты</h3>
+            <p>Ежедневные поставки овощей, рыбы и мяса от проверенных поставщиков</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-card__icon"></div>
+            <h3>Сервис,проверенный временем</h3>
+            <p>Мы крутые</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="container">
+        <h2>Забронируйте столик прямо сейчас</h2>
+        <p>Оставьте заявку, и мы перезвоним в течение 5 минут</p>
+        <a href="tel:+79001234567" class="btn btn--red">Позвонить</a>
+    </div>
+</section>
+{% endblock %}
